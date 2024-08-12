@@ -19,7 +19,7 @@ extension Request {
     URLSession(configuration: .default, delegate: session, delegateQueue: .main)
   }
   
-  func request<T: Decodable>(_ resource: RequestConfiguration) -> PublisherResult<T> {
+  public func request<T: Decodable>(_ resource: RequestConfiguration) -> PublisherResult<T> {
     let request = resource.request
     return requestSession.dataTaskPublisher(for: request)
       .receive(on: DispatchQueue.main)
