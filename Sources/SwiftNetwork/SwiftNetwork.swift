@@ -4,13 +4,13 @@
 import Foundation
 import Combine
 
-typealias PublisherResult<T: Decodable> = AnyPublisher<T, ErrorHandler>
+public typealias PublisherResult<T: Decodable> = AnyPublisher<T, ErrorHandler>
 
-protocol Request {
+public protocol Request {
   func request<T: Decodable>(_ resource: RequestConfiguration) -> PublisherResult<T>
 }
 
-extension Request {
+public extension Request {
   private var session: ClientURLSession {
     ClientURLSession()
   }
@@ -19,7 +19,7 @@ extension Request {
     URLSession(configuration: .default, delegate: session, delegateQueue: .main)
   }
   
-  public func request<T: Decodable>(_ resource: RequestConfiguration) -> PublisherResult<T> {
+  func request<T: Decodable>(_ resource: RequestConfiguration) -> PublisherResult<T> {
     let request = resource.request
     return requestSession.dataTaskPublisher(for: request)
       .receive(on: DispatchQueue.main)

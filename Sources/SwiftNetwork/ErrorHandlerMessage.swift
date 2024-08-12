@@ -7,11 +7,11 @@
 
 import Combine
 
-protocol ErrorHandlerMessage {
+public protocol ErrorHandlerMessage {
   func error(_ subscriber: Subscribers.Completion<ErrorHandler>) -> ErrorHandler?
 }
 
-extension ErrorHandlerMessage {
+public extension ErrorHandlerMessage {
   func error(_ subscriber: Subscribers.Completion<ErrorHandler>) -> ErrorHandler? {
     var errorHandler: ErrorHandler?
     switch subscriber {

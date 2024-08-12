@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum Method: String {
+public enum Method: String {
   case post = "POST"
 }
 
-protocol EndPoint {
+public protocol EndPoint {
   var path: String { get }
   var bodyRequest: String? { get }
   var request: URLRequest { get }
